@@ -40,8 +40,8 @@ def decision_tree_split(X, y):
   g_pa = 1. - p_pa2.sum()
 
   g_gain = g_pa - g_split # (n-1 d)
-  idx = np.argmax(g_gain.ravel(order="F")) # (n-1*d) -> int
-  i, f = np.unravel_index(idx, g_gain.shape, order='F') # (n-1, d)
+  idx = np.argmax(g_gain.ravel(order="C")) # (n-1*d) -> int
+  i, f = np.unravel_index(idx, g_gain.shape, order='C') # (n-1, d)
   
   threshold = (Xs[i, f] + Xs[i+1, f]) / 2.
   return [int(f), float(threshold)]
