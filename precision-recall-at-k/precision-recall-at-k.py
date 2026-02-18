@@ -9,7 +9,7 @@ def precision_recall_at_k(recommended, relevant, k):
   rel = np.asarray(relevant, dtype=int)
   top_k = rec[:k]
 
-  if rel.size == 0:
+  if rec.size ==0 or rel.size == 0:
     return 0, 0
 
   vals, counts = np.unique(recommended[:k], return_counts=True)
