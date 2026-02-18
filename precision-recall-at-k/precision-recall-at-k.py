@@ -7,15 +7,13 @@ def precision_recall_at_k(recommended, relevant, k):
   # Write code here
   rec = np.asarray(recommended, dtype=int)
   rel = np.asarray(relevant, dtype=int)
+  top_k = rec[:k]
 
-  if rel.size == 0:
+  if len(rel) == 0:
     return 0, 0
 
   vals, counts = np.unique(recommended[:k], return_counts=True)
-  inter = 0
-  for val in vals:
-    if val in rel:
-      inter += 1
+  inter = np.sum(np.isin(top_k, rel))
   pk = inter/k
-  rk = inter/rel.size
+  rk = inter/len(rel)
   return [pk, rk]
