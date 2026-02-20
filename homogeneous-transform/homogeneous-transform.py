@@ -7,7 +7,7 @@ def apply_homogeneous_transform(T, points):
   # Your code here
   p = np.asarray(points, dtype=float) # (n 3) (, 3)
   if p.ndim == 1:
-    p = p[None, :]
+    p = p[None, :] # (n 3)  n = 1, ...
   n, d = p.shape
   ph = np.ones((n,d+1))
   ph[:, :3] = p 
