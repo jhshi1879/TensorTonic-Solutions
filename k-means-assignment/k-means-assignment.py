@@ -9,9 +9,10 @@ def k_means_assignment(points, centroids):
 
   if p.ndim == 1:
     p = p[:, None]
+
   if c.ndim == 1:
     c = c[:, None]
   
   dst = np.linalg.norm(p[:, None, :] - c[None, :, :], axis=-1) # (n_p, n_c)
-  p_new = np.argmin(dst, axis=1) # (n_p, )
-  return p_new.tolist()
+  idx_p_new = np.argmin(dst, axis=1) # (n_p, )
+  return idx_p_new.tolist()
