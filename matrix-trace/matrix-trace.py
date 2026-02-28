@@ -7,6 +7,7 @@ def matrix_trace(A):
   # Write code here
   A = np.asarray(A, dtype=float)
   n, _ = A.shape
-  i = np.arange(n)
-  tr_A = np.sum(A[i, i])
+  # i = np.arange(n)
+  # tr_A = np.sum(A[i, i])
+  tr_A = np.sum(A*np.eye(n))
   return tr_A.tolist()
