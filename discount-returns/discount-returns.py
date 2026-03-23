@@ -1,19 +1,12 @@
 import numpy as np 
 
 def discount_returns(rewards, gamma):
-  """
-  Compute the discounted return at every timestep.
-  """
   r = np.asarray(rewards, dtype=float)
-  gm = gamma
+  T = r.shape[0]
 
-  T = len(rewards)
+  if gamma == 0:
+    return r.tolist()
 
-  g = np.empty_like(r)
-
-  g[T-1] = r[T-1]
-
-  for t in range(T-2,-1,-1):
-    g[t] = r[t] + gm * g[t+1]
-
-  return g.tolist()
+  p = gamma ** np.arange(T)
+  g = np.cumsum(r[::-1] / p) * p
+  return g[::-1].tolist()
